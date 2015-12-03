@@ -30,3 +30,5 @@ src/*-odb.cxx
 *.exe
 *.out
 *.app
+
+src/driver

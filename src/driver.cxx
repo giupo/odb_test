@@ -20,7 +20,7 @@ main (int argc, char* argv[])
 {
   try
   {
-    auto_ptr<database> db (new odb::sqlite::database("data.db"));
+    auto_ptr<database> db (new odb::sqlite::database("data.db", SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE));
 
     unsigned long john_id, jane_id, joe_id;
 
