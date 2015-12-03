@@ -1,3 +1,7 @@
+# ODB precompiled stuff
+src/*-odb.ixx
+src/*-odb.hxx
+src/*-odb.cxx
 # Compiled Object files
 *.slo
 *.lo
