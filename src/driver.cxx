@@ -32,12 +32,30 @@ main (int argc, char* argv[])
       person joe ("Joe", "Dirt", 30);
 
       transaction t (db->begin ());
-
+      t.tracer (stderr_tracer);
       // Make objects persistent and save their ids for later use.
       //
       john_id = db->persist (john);
       jane_id = db->persist (jane);
       joe_id = db->persist (joe);
+
+      t.commit ();
+    }
+
+    typedef odb::query<person> query;
+    typedef odb::result<person> result;
+
+    // Say hello to those over 30.
+    //
+    {
+      transaction t (db->begin ());
+      t.tracer (stderr_tracer);
+      result r (db->query<person> (query::age > 30));
+
+      for (result::iterator i (r.begin ()); i != r.end (); ++i)
+      {
+        cout << "Hello, " << i->first () << "!" << endl;
+      }
 
       t.commit ();
     }
